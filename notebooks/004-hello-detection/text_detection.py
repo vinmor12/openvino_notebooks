@@ -48,7 +48,7 @@ boxes = compiled_model([input_image])[output_layer_ir]
 # Remove zero only boxes.
 boxes = boxes[~np.all(boxes == 0, axis=1)]
 # Print boxes info
-print("\nBoxes:\n",boxes)
+print("Boxes:\n",boxes)
 
 # RESULT ----------------------------------------------------------------------
 # For each detection, the description is in the [x_min, y_min, x_max, y_max, conf] format:
@@ -100,7 +100,7 @@ threshold = float(input())
 plt.figure(figsize=(10, 6))
 plt.axis("off")
 plt.imshow(convert_result_to_image(image, resized_image, boxes, threshold, conf_labels=True));
-print("\nResult ...")
+print("Result ...")
 plt.show()
 
 # Vincenzo
