@@ -15,23 +15,21 @@ from notebook_utils import segmentation_map_to_image
 print("Modules Have Been Imported ")
 
 # LOAD MODEL ------------------------------------------------------------------
-print("...")
-print("Write the Path of Model ... ")
-print("(example: model/road-segmentation-adas-0001.xml)")
+print("\nWrite the Path of Model:\n(example: model/road-segmentation-adas-0001.xml)")
 model_path = input()
 # Initialize OpenVINO Runtime
 ie = Core()
 # Read Model
 model = ie.read_model(model=model_path)
 # Compile Model
-compiled_model = ie.compile_model(model=model, device_name="CPU")
+print("\nWrite the target Device:\n(example: CPU)")
+target_device = input()
+compiled_model = ie.compile_model(model=model, device_name=target_device)
 input_layer_ir = compiled_model.input(0)
 output_layer_ir = compiled_model.output(0)
 
 # LOAD INPUT IMAGE ------------------------------------------------------------
-print("...")
-print("Write the Path of Input Image ... ")
-print("(example: ../data/image/empty_road_mapillary.jpg)")
+print("\nWrite the Path of Input Image:\n(example: ../data/image/empty_road_mapillary.jpg)")
 image_path = input()
 # The segmentation network expects images in BGR format
 image = cv2.imread(image_path)
@@ -47,8 +45,7 @@ input_image = np.expand_dims(
 )
 # Plot RGB image
 plt.imshow(rgb_image)
-print("...")
-print("Close the Image to Continue ...")
+print("\nClose the Image to Continue ...")
 plt.show()
 
 # INFERENCE -------------------------------------------------------------------
@@ -57,8 +54,7 @@ result = compiled_model([input_image])[output_layer_ir]
 # Prepare data for visualization
 segmentation_mask = np.argmax(result, axis=1)
 plt.imshow(segmentation_mask.transpose(1, 2, 0))
-print("...")
-print("Close the Image to Continue ...")
+print("\nClose the Image to Continue ...")
 plt.show()
 
 # VISUALIZE DATA --------------------------------------------------------------
@@ -73,8 +69,7 @@ resized_mask = cv2.resize(mask, (image_w, image_h))
 image_with_mask = cv2.addWeighted(resized_mask, alpha, rgb_image, 1 - alpha, 0)
 # Display an image
 plt.imshow(image_with_mask)
-print("...")
-print("Final Result ...")
+print("\nFinal Result ...")
 plt.show()
 
 # Vincenzo
