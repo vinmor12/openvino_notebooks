@@ -53,7 +53,7 @@ if not ir_path.exists():
 else:
     print(f"IR model {ir_path} already exists.")
 
-print("Operation Complete")
+print("Operation Complete:")
 print("OpenVINO IR model is in 'model' dir!")
 
 # Vincenzo  
