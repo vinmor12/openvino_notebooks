@@ -1,6 +1,5 @@
-# Introduction to Transfer Learning
-In this tutorial, you will learn how to classify images of cats and dogs by using transfer learning with API Keras from a pre-trained network.
-
-You will use a dataset containing several thousand images of cats and dogs.
+# Post-Training Optimization
+This example shows how to do optimize an image classification model.
+A pre-trained MobileNetV3 model from Open Model Zoo is used in this example.
 
 Finally, you will do inference with OpenVINO.
