@@ -60,7 +60,7 @@ result_infer_16 = compiled_model_16([input_image])[output_layer_16]
 end = time.perf_counter()
 time_ir = end - start
 result_index_16 = np.argmax(result_infer_16)
-print("\nResult Index Model FP32:", result_index_16)
+print("\nResult Index Model FP16:", result_index_16)
 print("Infer Time Model FP16:", time_ir)
 start = time.perf_counter()
 result_infer_q = compiled_model_q([input_image])[output_layer_q]
