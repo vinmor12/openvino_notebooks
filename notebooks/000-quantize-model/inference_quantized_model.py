@@ -48,27 +48,35 @@ print("... Close the Image to Continue ...")
 plt.show()
 
 # INFERENCE -------------------------------------------------------------------
+# Number of Images for compparison
+print("Write Number of Images for comparison:\n(example: 100)")
+num_images = int(input())
+# Inference - FP32
 start = time.perf_counter()
-result_infer_32 = compiled_model_32([input_image])[output_layer_32]
+for _ in range(num_images):
+    result_infer_32 = compiled_model_32([input_image])[output_layer_32]
 end = time.perf_counter()
-time_ir = end - start
+time_ir = (end - start)/num_images
 result_index_32 = np.argmax(result_infer_32)
 print("\nResult Index Model FP32:", result_index_32)
 print("Infer Time Model FP32:", time_ir)
+# Inference - FP16
 start = time.perf_counter()
-result_infer_16 = compiled_model_16([input_image])[output_layer_16]
+for _ in range(num_images):
+    result_infer_16 = compiled_model_16([input_image])[output_layer_16]
 end = time.perf_counter()
-time_ir = end - start
+time_ir = (end - start)/num_images
 result_index_16 = np.argmax(result_infer_16)
-print("\nResult Index Model FP16:", result_index_16)
+print("\nResult Index Model FP32:", result_index_16)
 print("Infer Time Model FP16:", time_ir)
+# Inference - INT8
 start = time.perf_counter()
-result_infer_q = compiled_model_q([input_image])[output_layer_q]
+for _ in range(num_images):
+    result_infer_q = compiled_model_q([input_image])[output_layer_q]
 end = time.perf_counter()
-time_ir = end - start
+time_ir = (end - start)/num_images
 result_index_q = np.argmax(result_infer_q)
 print("\nResult Index Quantized Model:", result_index_q)
 print("Infer Time Quantized Model:", time_ir)
 
-
-
+# Vincenzo
