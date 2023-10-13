@@ -14,11 +14,11 @@ In this basic introduction to detection with OpenVINO, the [horizontal-text-dete
 Script Usage
 -
 After cloning the repository, you can use this application in the following way:
-+ Inizialize OpenVINO environment (check the correct path of your "activate" file)
++ inizialize OpenVINO environment (check the correct path of your "activate" file)
  ```
  openvino_env\Scripts\activate
  ```
-+ switch to "001-hello-world" folder
++ switch to "004-hello--detection" directory
  ```
  cd openvino_notebooks\notebooks\004-hello--detection
  ```
